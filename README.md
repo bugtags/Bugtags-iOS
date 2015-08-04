@@ -1,7 +1,8 @@
 # Bugtags iOS SDK
-Bug reporting for mobile apps, improve your app anytime, anywhere. Learn more at http://bugtags.com.
+Bugtags for iOS, reports bugs and their diagnosis information in one step, captures crashes automatically. Improve your apps anywhere, anytime.
 
-[![CI Status](http://img.shields.io/travis/Stephen/Bugtags.svg?style=flat)](https://travis-ci.org/Stephen/Bugtags)
+[Create a free account](http://bugtag.com/) and invite your team to improve your apps.
+
 [![Version](https://img.shields.io/cocoapods/v/Bugtags.svg?style=flat)](http://cocoapods.org/pods/Bugtags)
 [![License](https://img.shields.io/cocoapods/l/Bugtags.svg?style=flat)](http://cocoapods.org/pods/Bugtags)
 [![Platform](https://img.shields.io/cocoapods/p/Bugtags.svg?style=flat)](http://cocoapods.org/pods/Bugtags)
