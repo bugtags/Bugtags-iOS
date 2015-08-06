@@ -16,8 +16,8 @@
 
 /**
  * 初始化Bugtags
- * @param appKey - 通过bugtags.com申请的应用ID
- * @param invocationEvent - 调用方式
+ * @param appKey - 通过bugtags.com申请的应用appKey
+ * @param invocationEvent - 呼出方式
  * @return none
  */
 + (void)startWithAppKey:(NSString *)appKey invocationEvent:(BTGInvocationEventEvent)invocationEvent;
@@ -31,21 +31,21 @@
 void BTGLog(NSString *format, ...);
 
 /**
- * 是否跟踪Crash
+ * 设置是否收集Crash信息
  * @param trackingCrashes - 默认 YES
  * @return none
  */
 + (void)setTrackingCrashes:(BOOL)trackingCrashes;
 
 /**
- * 是否跟踪用户操作步骤
+ * 设置是否跟踪用户操作步骤
  * @param trackingUserSteps - 默认 YES
  * @return none
  */
 + (void)setTrackingUserSteps:(BOOL)trackingUserSteps;
 
 /**
- * 是否跟踪控制台日志
+ * 设置是否跟收集制台日志
  * @param trackingConsoleLog - 默认 YES
  * @return none
  */

@@ -14,11 +14,11 @@
 #endif
 
 /**
- *  呼出Bugtags的事件方式
+ *  Bugtags呼出方式
  */
 typedef enum BTGInvocationEventEvent {
     
-    // 静默模式，自动跟踪Crash（如果允许）
+    // 静默模式，收集Crash信息（如果允许）
     BTGInvocationEventNone,
     
     // 通过摇一摇呼出Bugtags
