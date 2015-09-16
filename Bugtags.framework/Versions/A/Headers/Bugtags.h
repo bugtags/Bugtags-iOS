@@ -5,7 +5,7 @@
  
  Copyright:  (c) 2015 by Bugtags, Ltd., all rights reserved.
  
- Version:    1.0.6
+ Version:    1.0.7
  */
 
 #import "BTGConstants.h"
@@ -21,6 +21,13 @@
  * @return none
  */
 + (void)startWithAppKey:(NSString *)appKey invocationEvent:(BTGInvocationEventEvent)invocationEvent;
+
+/**
+ * 设置Bugtags呼出方式
+ * @param invocationEvent - 呼出方式
+ * @return none
+ */
++ (void)setInvocationEvent:(BTGInvocationEventEvent)invocationEvent;
 
 /**
  * Bugtags日志工具，添加自定义日志，不会在控制台输出
