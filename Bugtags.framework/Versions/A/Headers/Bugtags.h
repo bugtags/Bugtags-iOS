@@ -5,7 +5,7 @@
  
  Copyright:  (c) 2015 by Bugtags, Ltd., all rights reserved.
  
- Version:    1.0.7
+ Version:    1.0.8
  */
 
 #import "BTGConstants.h"
