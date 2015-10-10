@@ -5,12 +5,36 @@
  
  Copyright:  (c) 2015 by Bugtags, Ltd., all rights reserved.
  
- Version:    1.0.8
+ Version:    1.0.9
  */
 
 #import "BTGConstants.h"
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
+
+@interface BugtagsOptions : NSObject
+
+/**
+ *  是否跟踪闪退，默认YES
+ */
+@property(nonatomic, assign) BOOL trackingCrashes;
+
+/**
+ *  是否跟踪用户操作步骤，默认YES
+ */
+@property(nonatomic, assign) BOOL trackingUserStep;
+
+/**
+ *  是否收集控制台日志，默认YES
+ */
+@property(nonatomic, assign) BOOL trackingConsoleLog;
+
+/**
+ *  是否收集用户位置信息，默认YES
+ */
+@property(nonatomic, assign) BOOL trackingUserLocation;
+
+@end
 
 @interface Bugtags : NSObject
 
@@ -21,6 +45,15 @@
  * @return none
  */
 + (void)startWithAppKey:(NSString *)appKey invocationEvent:(BTGInvocationEventEvent)invocationEvent;
+
+/**
+ * 初始化Bugtags
+ * @param appKey - 通过bugtags.com申请的应用appKey
+ * @param invocationEvent - 呼出方式
+ * @param options - 启动选项
+ * @return none
+ */
++ (void)startWithAppKey:(NSString *)appKey invocationEvent:(BTGInvocationEventEvent)invocationEvent options:(BugtagsOptions *)options;
 
 /**
  * 设置Bugtags呼出方式
@@ -52,11 +85,18 @@ void BTGLog(NSString *format, ...);
 + (void)setTrackingUserSteps:(BOOL)trackingUserSteps;
 
 /**
- * 设置是否跟收集制台日志
+ * 设置是否收集控制台日志
  * @param trackingConsoleLog - 默认 YES
  * @return none
  */
 + (void)setTrackingConsoleLog:(BOOL)trackingConsoleLog;
+
+/**
+* 设置是否收集用户位置信息
+* @param trackingUserLocation - 默认 YES
+* @return none
+*/
++ (void)setTrackingUserLocation:(BOOL)trackingUserLocation;
 
 /**
  * 设置自定义数据，会与问题一起提交
