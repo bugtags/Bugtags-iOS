@@ -22,7 +22,7 @@
 /**
  *  是否跟踪用户操作步骤，默认YES
  */
-@property(nonatomic, assign) BOOL trackingUserStep;
+@property(nonatomic, assign) BOOL trackingUserSteps;
 
 /**
  *  是否收集控制台日志，默认YES
