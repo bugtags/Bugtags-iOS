@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
     }
   s.author            = { "Bugtags" => "dev@bugtags.com" }
   s.platform          = :ios, '6.0'
-  s.source            = { :git => "https://github.com/bugtags/Bugtags-iOS.git", :tag => s.version.to_s }
+  s.source            = { :git => "https://github.com/bugtags/Bugtags-iOS.git", :branch => 'dev' }
   s.source_files      = 'Bugtags.framework/Versions/A/Headers/*.{h}'
   s.resources         = 'Bugtags.bundle'
   s.preserve_paths    = 'Bugtags.framework/*', 'Bugtags.bundle'
