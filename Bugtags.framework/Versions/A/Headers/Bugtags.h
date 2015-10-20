@@ -5,7 +5,7 @@
  
  Copyright:  (c) 2015 by Bugtags, Ltd., all rights reserved.
  
- Version:    1.1.1
+ Version:    1.1.2
  */
 
 #import "BTGConstants.h"
@@ -36,8 +36,9 @@
 
 /**
  * 支持的屏幕方向，默认UIInterfaceOrientationMaskAllButUpsideDown，请根据您的App支持的屏幕方向来设置
+ * 1.1.2+ 不需要手动设置，SDK会自动设置
  */
-@property(nonatomic, assign) UIInterfaceOrientationMask supportedInterfaceOrientations;
+@property(nonatomic, assign) UIInterfaceOrientationMask supportedInterfaceOrientations __attribute__((deprecated));
 
 @end
 
