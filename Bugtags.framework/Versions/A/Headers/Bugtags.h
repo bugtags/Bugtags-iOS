@@ -15,7 +15,7 @@
 @interface BugtagsOptions : NSObject
 
 /**
- *  是否跟踪闪退，默认YES
+ *  是否跟踪闪退，联机Debug状态下默认NO，其它情况默认YES
  */
 @property(nonatomic, assign) BOOL trackingCrashes;
 
