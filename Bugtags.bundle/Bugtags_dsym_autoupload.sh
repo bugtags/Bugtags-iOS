@@ -78,7 +78,6 @@ echo "Bugtags: Compressing dSYM file..."
 echo "Bugtags: Uploading dSYM file..."
 ENDPOINT="https://bugtags.com/api/apps/symbols/upload"
 STATUS=$(curl "${ENDPOINT}" --write-out %{http_code} --silent --output /dev/null -F "file=@${DSYM_PATH_ZIP};type=application/octet-stream" -F "app_key=${APP_KEY}" -F "secret_key=${APP_SECRET}" -F "version_name=${APP_VERSION}" -F "version_code=${APP_BUILD}")
-echo $STATUS
 if [ $STATUS -ne 200 ]; then
 echo "Bugtags error: dSYM archive not succesfully uploaded."
 echo "Bugtags: deleting temporary dSYM archive..."
