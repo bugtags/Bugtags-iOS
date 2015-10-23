@@ -8,6 +8,7 @@
 #   * Uncomment and paste the following script.
 #
 # --- INVOCATION SCRIPT BEGIN ---
+# # SKIP_DEBUG_BUILDS=1
 # # SKIP_SIMULATOR_BUILDS=1
 # APP_KEY="" #Fill your own App Key
 # APP_SECRET="" #Fill your own App Secret
@@ -22,12 +23,17 @@
 echo "Bugtags: Started uploading dSYM"
 
 if [ ! "${APP_KEY}" ] || [ ! "${APP_SECRET}" ]; then
-	echo "Bugtags error: APP_KEY or APP_SECRET is invalid"
-	exit 0
+echo "Bugtags error: APP_KEY or APP_SECRET is invalid"
+exit 0
 fi
 
-APP_VERSION=$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" "${PROJECT_DIR}/${INFOPLIST_FILE}")
-APP_BUILD=$(/usr/libexec/PlistBuddy -c "Print CFBundleVersion" "${PROJECT_DIR}/${INFOPLIST_FILE}")
+# Check for debug builds
+if [ "$CONFIGURATION" == "Debug" ]; then
+if [ "${SKIP_DEBUG_BUILDS}" ] && [ "${SKIP_DEBUG_BUILDS}" -eq 1 ]; then
+echo "Bugtags: Skipping debug build"
+exit 0
+fi
+fi
 
 # Check for simulator builds
 if [ "$EFFECTIVE_PLATFORM_NAME" == "-iphonesimulator" ]; then
@@ -77,6 +83,8 @@ echo "Bugtags: Compressing dSYM file..."
 # Upload dSYM
 echo "Bugtags: Uploading dSYM file..."
 ENDPOINT="https://bugtags.com/api/apps/symbols/upload"
+APP_VERSION=$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" "${PROJECT_DIR}/${INFOPLIST_FILE}")
+APP_BUILD=$(/usr/libexec/PlistBuddy -c "Print CFBundleVersion" "${PROJECT_DIR}/${INFOPLIST_FILE}")
 STATUS=$(curl "${ENDPOINT}" --write-out %{http_code} --silent --output /dev/null -F "file=@${DSYM_PATH_ZIP};type=application/octet-stream" -F "app_key=${APP_KEY}" -F "secret_key=${APP_SECRET}" -F "version_name=${APP_VERSION}" -F "version_code=${APP_BUILD}")
 if [ $STATUS -ne 200 ]; then
 echo "Bugtags error: dSYM archive not succesfully uploaded."
