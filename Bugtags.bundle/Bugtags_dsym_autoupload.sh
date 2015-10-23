@@ -48,6 +48,13 @@ if [ ! "`ping -c 1 bugtags.com`" ]; then
 exit 0
 fi
 
+# Check dSYM file
+DSYM_PATH=${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}
+if [ ! -d "$DSYM_PATH" ]; then
+echo "Bugtags error: dSYM not found: ${DSYM_PATH}, please check Build Settings -> Debug Information Format, must be set to 'DWARF with dSYM File'."
+exit 0
+fi
+
 # Create temp directory if not exists
 CURRENT_USER=$(whoami | tr -dc '[:alnum:]\n\r' | tr '[:upper:]' '[:lower:]')
 TEMP_ROOT="/tmp/Bugtags-${CURRENT_USER}"
@@ -59,11 +66,8 @@ if [ ! -d "${TEMP_DIRECTORY}" ]; then
 mkdir "${TEMP_DIRECTORY}"
 fi
 
-# Check dSYM file
-DSYM_PATH=${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}
-DSYM_UUIDs=$(dwarfdump --uuid "${DSYM_PATH}" | cut -d' ' -f2)
-
 # Check if UUIDs exists
+DSYM_UUIDs=$(dwarfdump --uuid "${DSYM_PATH}" | cut -d' ' -f2)
 DSYM_UUIDs_PATH="${TEMP_DIRECTORY}/UUIDs.dat"
 if [ -f "${DSYM_UUIDs_PATH}" ]; then
 if grep -Fxq "${DSYM_UUIDs}" "${DSYM_UUIDs_PATH}"; then
@@ -72,12 +76,8 @@ fi
 fi
 
 # Create dSYM .zip file
-DSYM_PATH_ZIP="${TEMP_DIRECTORY}/$DWARF_DSYM_FILE_NAME.zip"
-if [ ! -d "$DSYM_PATH" ]; then
-echo "Bugtags error: dSYM not found: ${DSYM_PATH}"
-exit 0
-fi
 echo "Bugtags: Compressing dSYM file..."
+DSYM_PATH_ZIP="${TEMP_DIRECTORY}/$DWARF_DSYM_FILE_NAME.zip"
 (/usr/bin/zip --recurse-paths -j -x *.plist --quiet "${DSYM_PATH_ZIP}" "${DSYM_PATH}") || exit 0
 
 # Upload dSYM
