@@ -5,7 +5,7 @@
  
  Copyright:  (c) 2015 by Bugtags, Ltd., all rights reserved.
  
- Version:    1.1.2
+ Version:    1.1.3
  */
 
 #import "BTGConstants.h"
@@ -33,6 +33,11 @@
  *  是否收集用户位置信息，默认YES
  */
 @property(nonatomic, assign) BOOL trackingUserLocation;
+
+/**
+ *  是否收集闪退时的界面截图，默认YES
+ */
+@property(nonatomic, assign) BOOL crashWithScreenshot;
 
 /**
  * 支持的屏幕方向，默认UIInterfaceOrientationMaskAllButUpsideDown，请根据您的App支持的屏幕方向来设置
