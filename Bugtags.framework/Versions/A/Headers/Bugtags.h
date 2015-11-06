@@ -45,6 +45,16 @@
  */
 @property(nonatomic, assign) UIInterfaceOrientationMask supportedInterfaceOrientations __attribute__((deprecated));
 
+/**
+ *  设置应用版本号，默认自动获取应用的版本号
+ */
+@property(nonatomic, strong) NSString *version;
+
+/**
+ *  设置应用build，默认自动获取应用的build
+ */
+@property(nonatomic, strong) NSString *build;
+
 @end
 
 @interface Bugtags : NSObject
