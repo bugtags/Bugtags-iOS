@@ -5,7 +5,7 @@
  
  Copyright:  (c) 2015 by Bugtags, Ltd., all rights reserved.
  
- Version:    1.1.4
+ Version:    1.1.5
  */
 
 #import "BTGConstants.h"
@@ -48,12 +48,12 @@
 /**
  *  设置应用版本号，默认自动获取应用的版本号
  */
-@property(nonatomic, strong) NSString *version;
+@property(nonatomic, copy) NSString *version;
 
 /**
  *  设置应用 build，默认自动获取应用的 build
  */
-@property(nonatomic, strong) NSString *build;
+@property(nonatomic, copy) NSString *build;
 
 @end
 
@@ -114,7 +114,7 @@ void BTGLog(NSString *format, ...);
 
 /**
 * 设置是否收集用户位置信息
-* @param trackingUserLocation - 默认 YES
+* @param trackingUserLocation
 * @return none
 */
 + (void)setTrackingUserLocation:(BOOL)trackingUserLocation;
@@ -153,5 +153,25 @@ void BTGLog(NSString *format, ...);
  * @return none
  */
 + (void)sendFeedback:(NSString *)content;
+
+/**
+ * 设置问题提交之前的回调
+ * @param callback - 回调的 block
+ * @return none
+ */
++ (void)setBeforeSendingCallback:(void (^)(void))callback;
+
+/**
+ * 设置问题提交成功后的回调
+ * @param callback - 回调的 block
+ * @return none
+ */
++ (void)setAfterSendingCallback:(void (^)(void))callback;
+
+/**
+ * 手动调用截屏界面
+ * @return none
+ */
++ (void)invoke;
 
 @end
