@@ -5,7 +5,7 @@
  
  Copyright:  (c) 2015 by Bugtags, Ltd., all rights reserved.
  
- Version:    1.1.5
+ Version:    1.1.6
  */
 
 #import "BTGConstants.h"
@@ -90,6 +90,14 @@
  * @return none
  */
 void BTGLog(NSString *format, ...);
+
+/**
+ * Bugtags 日志工具，添加自定义日志，不会在控制台输出，功能等同于 BTGLog
+ * 在 Swift 中请调用此方法添加自定义日志
+ * @param content - 日志内容
+ * @return none
+ */
++ (void)log:(NSString *)content;
 
 /**
  * 设置是否收集 Crash 信息
