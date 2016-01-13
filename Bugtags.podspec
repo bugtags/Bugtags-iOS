@@ -19,14 +19,15 @@ Pod::Spec.new do |s|
         THE SOFTWARE.
       LICENSE
     }
-  s.author            = { "Bugtags" => "dev@bugtags.com" }
-  s.platform          = :ios, '6.0'
-  s.source            = { :git => "https://github.com/bugtags/Bugtags-iOS.git", :tag => s.version.to_s }
-  s.source_files      = 'Bugtags.framework/Versions/A/Headers/*.{h}'
-  s.resources         = 'Bugtags.bundle'
-  s.preserve_paths    = 'Bugtags.framework/*', 'Bugtags.bundle'
-  s.frameworks        = 'UIKit', 'ImageIO', 'AVFoundation', 'SystemConfiguration', 'CoreLocation', 'Security', 'CFNetwork', 'Bugtags'
-  s.xcconfig          =  { 'FRAMEWORK_SEARCH_PATHS' => '"$(PODS_ROOT)/Bugtags/"' }
-  s.requires_arc      = true
-  s.xcconfig          = {'OTHER_LDFLAGS' => '-ObjC'}
+  s.author              = { "Bugtags" => "dev@bugtags.com" }
+  s.platform            = :ios, '6.0'
+  s.source              = { :git => "https://github.com/bugtags/Bugtags-iOS.git", :tag => s.version.to_s }
+  s.public_header_files = 'Bugtags.framework/Versions/A/Headers/*.{h}'
+  s.source_files        = 'Bugtags.framework/Versions/A/Headers/*.{h}'
+  s.resources           = 'Bugtags.bundle'
+  s.preserve_paths      = 'Bugtags.framework/*', 'Bugtags.bundle'
+  s.frameworks          = 'UIKit', 'ImageIO', 'AVFoundation', 'SystemConfiguration', 'CoreLocation', 'Security', 'CFNetwork', 'Bugtags'
+  s.xcconfig            =  { 'FRAMEWORK_SEARCH_PATHS' => '"$(PODS_ROOT)/Bugtags/"' }
+  s.requires_arc        = true
+  s.xcconfig            = {'OTHER_LDFLAGS' => '-ObjC'}
 end
