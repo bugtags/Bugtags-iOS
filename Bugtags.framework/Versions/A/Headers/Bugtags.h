@@ -3,9 +3,9 @@
  
  Contains:   API for using Bugtags's SDK.
  
- Copyright:  (c) 2015 by Bugtags, Ltd., all rights reserved.
+ Copyright:  (c) 2016 by Bugtags, Ltd., all rights reserved.
  
- Version:    1.1.6
+ Version:    1.1.7
  */
 
 #import "BTGConstants.h"
