@@ -34,7 +34,7 @@
 "btg_info_signin_failed" = "帐号或密码错误";
 "btg_info_signin_captcha_invalid" = "验证码有误";
 
-"btg_info_tips_tag_0" = "标签要这么玩";
+"btg_info_tips_tag_0" = "通过标签提交 Bug";
 "btg_info_tips_tag_1" = "单击屏幕选择标签位置";
 "btg_info_tips_tag_2" = "单击标签改变方向";
 "btg_info_tips_tag_3" = "长按标签可编辑或删除";
