@@ -29,5 +29,5 @@ Pod::Spec.new do |s|
   s.frameworks          = 'UIKit', 'ImageIO', 'AVFoundation', 'SystemConfiguration', 'CoreLocation', 'Security', 'CFNetwork', 'Bugtags'
   s.xcconfig            =  { 'FRAMEWORK_SEARCH_PATHS' => '"$(PODS_ROOT)/Bugtags/"' }
   s.requires_arc        = true
-  s.xcconfig            = {'OTHER_LDFLAGS' => '-ObjC'}
+  s.xcconfig            = { 'OTHER_LDFLAGS' => '-ObjC' }
 end
