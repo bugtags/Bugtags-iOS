@@ -10,19 +10,20 @@
 #define Bugtags_BTGConstants_h
 
 /**
- *  Bugtags呼出方式
+ *  Bugtags 呼出方式
+ *  所有方式都会自动收集 Crash 信息（如果允许）
  */
 typedef enum BTGInvocationEvent {
     
-    // 静默模式，收集Crash信息（如果允许）
+    // 静默模式，只收集 Crash 信息（如果允许）
     BTGInvocationEventNone,
     
-    // 通过摇一摇呼出Bugtags
+    // 通过摇一摇呼出 Bugtags
     BTGInvocationEventShake,
     
-    // 通过悬浮小球呼出Bugtags
-    BTGInvocationEventBubble,
-    
+    // 通过悬浮小球呼出 Bugtags
+    BTGInvocationEventBubble
+
 } BTGInvocationEvent;
 
 #endif

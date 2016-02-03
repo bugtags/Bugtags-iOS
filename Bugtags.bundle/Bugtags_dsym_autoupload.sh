@@ -83,8 +83,12 @@ DSYM_PATH_ZIP="${TEMP_DIRECTORY}/$DWARF_DSYM_FILE_NAME.zip"
 # Upload dSYM
 echo "Bugtags: Uploading dSYM file..."
 ENDPOINT="https://bugtags.com/api/apps/symbols/upload"
-APP_VERSION=$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" "${PROJECT_DIR}/${INFOPLIST_FILE}")
-APP_BUILD=$(/usr/libexec/PlistBuddy -c "Print CFBundleVersion" "${PROJECT_DIR}/${INFOPLIST_FILE}")
+PLISTFILE="${INFOPLIST_FILE}"
+if [[ "$PLISTFILE" != /* ]]; then
+PLISTFILE="${PROJECT_DIR}/${PLISTFILE}"
+fi
+APP_VERSION=$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" "${PLISTFILE}")
+APP_BUILD=$(/usr/libexec/PlistBuddy -c "Print CFBundleVersion" "${PLISTFILE}")
 STATUS=$(curl "${ENDPOINT}" --write-out %{http_code} --silent --output /dev/null -F "file=@${DSYM_PATH_ZIP};type=application/octet-stream" -F "app_key=${APP_KEY}" -F "secret_key=${APP_SECRET}" -F "version_name=${APP_VERSION}" -F "version_code=${APP_BUILD}")
 if [ $STATUS -ne 200 ]; then
 echo "Bugtags error: dSYM archive not succesfully uploaded."
