@@ -78,7 +78,7 @@ fi
 # Create dSYM .zip file
 echo "Bugtags: Compressing dSYM file..."
 DSYM_PATH_ZIP="${TEMP_DIRECTORY}/$DWARF_DSYM_FILE_NAME.zip"
-(/usr/bin/zip --recurse-paths -j -x *.plist --quiet "${DSYM_PATH_ZIP}" "${DSYM_PATH}") || exit 0
+(/usr/bin/zip --recurse-paths -j -x "*.plist" --quiet "${DSYM_PATH_ZIP}" "${DSYM_PATH}") || exit 0
 
 # Upload dSYM
 echo "Bugtags: Uploading dSYM file..."
