@@ -5,7 +5,7 @@
  
  Copyright:  (c) 2016 by Bugtags, Ltd., all rights reserved.
  
- Version:    1.1.9
+ Version:    1.2.0
  */
 
 #import "BTGConstants.h"
@@ -33,6 +33,16 @@
  *  是否收集用户位置信息，默认 YES
  */
 @property(nonatomic, assign) BOOL trackingUserLocation;
+
+/**
+ *  是否跟踪网络请求，只跟踪 HTTP / HTTPS 请求，默认 NO
+ */
+@property(nonatomic, assign) BOOL trackingNetwork;
+
+/**
+ *  设置需要跟踪的网络请求 URL，多个地址用 | 隔开，支持正则表达式，不设置则跟踪所有请求
+ */
+@property(nonatomic, copy) NSString *trackingNetworkURLFilter;
 
 /**
  *  是否收集闪退时的界面截图，默认 YES
@@ -126,6 +136,13 @@ void BTGLog(NSString *format, ...);
 * @return none
 */
 + (void)setTrackingUserLocation:(BOOL)trackingUserLocation;
+
+/**
+ *  设置是否跟踪网络请求，只跟踪 HTTP / HTTPS 请求
+ *  @param trackingNetwork - 默认 NO
+ *  @return none
+ */
++ (void)setTrackingNetwork:(BOOL)trackingNetwork;
 
 /**
  * 设置自定义数据，会与问题一起提交
