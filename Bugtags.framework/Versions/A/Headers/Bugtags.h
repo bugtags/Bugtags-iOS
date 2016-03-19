@@ -5,7 +5,7 @@
  
  Copyright:  (c) 2016 by Bugtags, Ltd., all rights reserved.
  
- Version:    1.2.0
+ Version:    1.2.1
  */
 
 #import "BTGConstants.h"
@@ -192,6 +192,13 @@ void BTGLog(NSString *format, ...);
  * @return none
  */
 + (void)setAfterSendingCallback:(void (^)(void))callback;
+
+/**
+ * 设置是否仅在 WiFi 模式下才上传数据
+ *
+ * @param onlyViaWiFi - 默认 NO
+ */
++ (void)setUploadDataOnlyViaWiFi:(BOOL)onlyViaWiFi;
 
 /**
  * 手动调用截屏界面
