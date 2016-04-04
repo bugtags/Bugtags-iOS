@@ -5,7 +5,7 @@
  
  Copyright:  (c) 2016 by Bugtags, Ltd., all rights reserved.
  
- Version:    1.2.2
+ Version:    1.2.3
  */
 
 #import "BTGConstants.h"
@@ -48,6 +48,11 @@
  *  是否收集闪退时的界面截图，默认 YES
  */
 @property(nonatomic, assign) BOOL crashWithScreenshot;
+
+/**
+ *  是否忽略 PIPE Signal (SIGPIPE) 闪退，默认 NO
+ */
+@property(nonatomic, assign) BOOL ignorePIPESignalCrash;
 
 /**
  * 支持的屏幕方向，默认 UIInterfaceOrientationMaskAllButUpsideDown，请根据您的 App 支持的屏幕方向来设置
