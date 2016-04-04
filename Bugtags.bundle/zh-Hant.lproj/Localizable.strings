@@ -39,5 +39,5 @@
 "btg_info_tips_tag_2" = "單擊標籤改變方向";
 "btg_info_tips_tag_3" = "長按標籤可編輯或刪除";
 
-"btg_info_tags_empty" = "至少添加1個標籤";
-"btg_info_tags_add_limit" = "最多添加3個標籤";
+"btg_info_tags_empty" = "至少添加 1 個標籤";
+"btg_info_tags_add_limit" = "最多添加 3 個標籤";
