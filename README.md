@@ -22,5 +22,5 @@ Bugtags is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'Bugtags', '~> 1.2.3'
+pod 'Bugtags', '~> 1.2.4'
 ```
