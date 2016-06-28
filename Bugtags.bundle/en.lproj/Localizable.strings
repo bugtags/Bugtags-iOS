@@ -33,6 +33,7 @@
 "btg_info_signin_loading" = "Sign in...";
 "btg_info_signin_failed" = "Account or\npassword error";
 "btg_info_signin_captcha_invalid" = "Invalid captcha";
+"btg_info_network_unavailable" = "Network\nnot available";
 
 "btg_info_tips_tag_0" = "Report Bug via tag";
 "btg_info_tips_tag_1" = "Tap screen to add a tag";

@@ -5,7 +5,7 @@
  
  Copyright:  (c) 2016 by Bugtags, Ltd., all rights reserved.
  
- Version:    1.2.7
+ Version:    1.2.8
  */
 
 #import "BTGConstants.h"
@@ -231,5 +231,21 @@ void BTGLog(NSString *format, ...);
  * @return none
  */
 + (void)invoke;
+
+/**
+ * 注册插件
+ *
+ * @param plugin 需要注册的插件
+ *
+ * @return 注册成功 - YES，注册失败 - NO
+ */
++ (BOOL)registerPlugin:(id)plugin;
+
+/**
+ * 卸载插件
+ *
+ * @param plugin 需要卸载的插件
+ */
++ (void)unregisterPlugin:(id)plugin;
 
 @end
