@@ -34,6 +34,8 @@
 "btg_info_signin_failed" = "帳號或密碼錯誤";
 "btg_info_signin_captcha_invalid" = "驗證碼有誤";
 "btg_info_network_unavailable" = "網絡連接失敗";
+"btg_info_quicksignin" = "快速登錄";
+"btg_info_quicksignin_tips" = "點擊下方帳號直接登錄";
 
 "btg_info_tips_tag_0" = "通過標籤提交 Bug";
 "btg_info_tips_tag_1" = "單擊屏幕選擇標籤位置";

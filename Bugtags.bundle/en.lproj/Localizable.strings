@@ -31,9 +31,11 @@
 "btg_info_discard_report" = "Sure to discard?";
 "btg_info_start_trace" = "Sure to restart trace?";
 "btg_info_signin_loading" = "Sign in...";
-"btg_info_signin_failed" = "Account or\npassword error";
+"btg_info_signin_failed" = "Account or password error";
 "btg_info_signin_captcha_invalid" = "Invalid captcha";
-"btg_info_network_unavailable" = "Network\nnot available";
+"btg_info_network_unavailable" = "Network not available";
+"btg_info_quicksignin" = "Quick Sign In";
+"btg_info_quicksignin_tips" = "Click account below to sign in directly";
 
 "btg_info_tips_tag_0" = "Report Bug via tag";
 "btg_info_tips_tag_1" = "Tap screen to add a tag";
