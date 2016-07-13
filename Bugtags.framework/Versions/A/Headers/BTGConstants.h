@@ -3,7 +3,7 @@
 //  Bugtags
 //
 //  Created by Stephen Zhang on 15/6/4.
-//  Copyright (c) 2016 年 bugtags.com. All rights reserved.
+//  Copyright (c) 2016 bugtags.com. All rights reserved.
 //
 
 #ifndef Bugtags_BTGConstants_h
