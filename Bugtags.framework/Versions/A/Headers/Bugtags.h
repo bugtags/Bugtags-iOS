@@ -5,7 +5,7 @@
  
  Copyright:  (c) 2016 by Bugtags, Ltd., all rights reserved.
  
- Version:    1.3.1
+ Version:    2.0.0
  */
 
 #import "BTGConstants.h"
@@ -15,35 +15,35 @@
 @interface BugtagsOptions : NSObject <NSCopying>
 
 /**
- *  是否跟踪闪退，联机 Debug 状态下默认 NO，其它情况默认 YES
+ * 是否跟踪闪退，联机 Debug 状态下默认 NO，其它情况默认 YES
  */
 @property(nonatomic, assign) BOOL trackingCrashes;
 
 /**
- *  是否跟踪用户操作步骤，默认 YES
+ * 是否跟踪用户操作步骤，默认 YES
  */
 @property(nonatomic, assign) BOOL trackingUserSteps;
 
 /**
- *  是否收集控制台日志，默认 YES
+ * 是否收集控制台日志，默认 YES
  */
 @property(nonatomic, assign) BOOL trackingConsoleLog;
 
 /**
- *  是否收集用户位置信息，默认 YES
+ * 是否收集用户位置信息，默认 YES
  */
 @property(nonatomic, assign) BOOL trackingUserLocation;
 
 /**
- *  是否跟踪网络请求，只跟踪 HTTP / HTTPS 请求，默认 NO
- *  强烈建议同时设置 trackingNetworkURLFilter 对需要跟踪的网络请求进行过滤
+ * 是否跟踪网络请求，只跟踪 HTTP / HTTPS 请求，默认 NO
+ * 强烈建议同时设置 trackingNetworkURLFilter 对需要跟踪的网络请求进行过滤
  */
 @property(nonatomic, assign) BOOL trackingNetwork;
 
 /**
- *  设置需要跟踪的网络请求 URL，多个地址用 | 隔开，支持正则表达式，不设置则跟踪所有请求
- *  强烈建议设置为应用服务器接口的域名，如果接口是通过 IP 地址访问，则设置为 IP 地址
- *  如：设置为 bugtags.com，则网络请求跟踪只对 URL 中包含 bugtags.com 的请求有效
+ * 设置需要跟踪的网络请求 URL，多个地址用 | 隔开，支持正则表达式，不设置则跟踪所有请求
+ * 强烈建议设置为应用服务器接口的域名，如果接口是通过 IP 地址访问，则设置为 IP 地址
+ * 如：设置为 bugtags.com，则网络请求跟踪只对 URL 中包含 bugtags.com 的请求有效
  */
 @property(nonatomic, copy) NSString *trackingNetworkURLFilter;
 
@@ -53,12 +53,17 @@
 @property(nonatomic, assign) BOOL trackingNetworkContinueWithInvalidCertificate;
 
 /**
- *  是否收集闪退时的界面截图，默认 YES
+ * 是否收集闪退时的界面截图，默认 YES
  */
 @property(nonatomic, assign) BOOL crashWithScreenshot;
 
 /**
- *  是否忽略 PIPE Signal (SIGPIPE) 闪退，默认 NO
+ * 是否忽略所有的 Signal 闪退，设置为 YES 将不再收集 Signal 闪退，默认 NO
+ */
+@property(nonatomic, assign) BOOL ignoreSignalCrash;
+
+/**
+ * 是否忽略 PIPE Signal (SIGPIPE) 闪退，默认 NO
  */
 @property(nonatomic, assign) BOOL ignorePIPESignalCrash;
 
@@ -74,14 +79,49 @@
 @property(nonatomic, assign) UIInterfaceOrientationMask supportedInterfaceOrientations __attribute__((deprecated));
 
 /**
- *  设置应用版本号，默认自动获取应用的版本号
+ * 设置应用版本号，默认自动获取应用的版本号
  */
 @property(nonatomic, copy) NSString *version;
 
 /**
- *  设置应用 build，默认自动获取应用的 build
+ * 设置应用 build，默认自动获取应用的 build
  */
 @property(nonatomic, copy) NSString *build;
+
+/**
+ * 设置 SDK 是否处于测试状态，默认为 NO
+ * 该属性对远程配置及在线修复有效，设置为 YES，则可以接收远程配置及在线修复测试状态的数据
+ */
+@property(nonatomic, assign) BOOL inTestMode;
+
+@end
+
+/**
+ * 远程配置类
+ *
+ */
+@interface BugtagsRemoteConfig : NSObject
+
+/**
+ * 获取指定的字符串，没有指定的 key，则返回 nil
+ * @param key key
+ * @return 字符串
+ */
+- (NSString *)stringForKey:(NSString *)key;
+
+/**
+ * 获取指定的 Bool 值，没有指定的 key，则返回 NO
+ * @param key key
+ * @return YES / NO
+ */
+- (BOOL)boolForKey:(NSString *)key;
+
+/**
+ * 获取指定的整型值，没有指定的 key，则返回 0
+ * @param key key
+ * @return 整型值
+ */
+- (NSInteger)integerForKey:(NSString *)key;
 
 @end
 
@@ -113,7 +153,6 @@
 
 /**
  * 获取 Bugtags 当前的呼出方式
- *
  * @return 呼出方式
  */
 + (BTGInvocationEvent)currentInvocationEvent;
@@ -124,7 +163,7 @@
  * @param ...
  * @return none
  */
-void BTGLog(NSString *format, ...);
+void BTGLog(NSString *format, ...) NS_FORMAT_FUNCTION(1,2);
 
 /**
  * Bugtags 日志工具，添加自定义日志，不会在控制台输出，功能等同于 BTGLog
@@ -163,10 +202,10 @@ void BTGLog(NSString *format, ...);
 + (void)setTrackingUserLocation:(BOOL)trackingUserLocation;
 
 /**
- *  设置是否跟踪网络请求，只跟踪 HTTP / HTTPS 请求
- *  强烈建议同时设置 trackingNetworkURLFilter 对需要跟踪的网络请求进行过滤
- *  @param trackingNetwork - 默认 NO
- *  @return none
+ * 设置是否跟踪网络请求，只跟踪 HTTP / HTTPS 请求
+ * 强烈建议同时设置 trackingNetworkURLFilter 对需要跟踪的网络请求进行过滤
+ * @param trackingNetwork - 默认 NO
+ * @return none
  */
 + (void)setTrackingNetwork:(BOOL)trackingNetwork;
 
@@ -221,7 +260,6 @@ void BTGLog(NSString *format, ...);
 
 /**
  * 设置是否仅在 WiFi 模式下才上传数据
- *
  * @param onlyViaWiFi - 默认 NO
  */
 + (void)setUploadDataOnlyViaWiFi:(BOOL)onlyViaWiFi;
@@ -234,18 +272,27 @@ void BTGLog(NSString *format, ...);
 
 /**
  * 注册插件
- *
  * @param plugin 需要注册的插件
- *
  * @return 注册成功 - YES，注册失败 - NO
  */
 + (BOOL)registerPlugin:(id)plugin;
 
 /**
  * 卸载插件
- *
  * @param plugin 需要卸载的插件
  */
 + (void)unregisterPlugin:(id)plugin;
+
+/**
+ * 获取远程配置
+ * @return BugtagsRemoteConfig
+ */
++ (BugtagsRemoteConfig *)remoteConfig;
+
+/**
+ * 手动同步远程配置及在线修复数据
+ * Bugtags 初始化会自动调用一次
+ */
++ (void)sync;
 
 @end
