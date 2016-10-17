@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "Bugtags"
-  s.version      = "1.3.1"
+  s.version      = "2.0.0"
   s.summary      = "Bug reporting for mobile apps, improve your app anytime, anywhere. Learn more at http://bugtags.com."
   s.homepage     = "http://bugtags.com/"
   s.license      = {
@@ -22,10 +22,24 @@ Pod::Spec.new do |s|
   s.author              = { "Bugtags" => "dev@bugtags.com" }
   s.platform            = :ios, '6.0'
   s.source              = { :git => "https://github.com/bugtags/Bugtags-iOS.git", :tag => s.version.to_s }
-  s.source_files        = 'Bugtags.framework/Versions/A/Headers/*.{h}'
-  s.resources           = 'Bugtags.bundle'
-  s.preserve_paths      = 'Bugtags.framework/*', 'Bugtags.bundle'
-  s.frameworks          = 'UIKit', 'ImageIO', 'AVFoundation', 'SystemConfiguration', 'CoreLocation', 'Security', 'CFNetwork', 'Bugtags'
-  s.xcconfig            =  { 'FRAMEWORK_SEARCH_PATHS' => '"$(PODS_ROOT)/Bugtags/"', 'OTHER_LDFLAGS' => '-ObjC' }
-  s.requires_arc        = true
+  s.default_subspec     = 'Core'
+
+  s.subspec 'Core' do |ss|
+    ss.source_files        = 'Bugtags.framework/Versions/A/Headers/*.{h}'
+    ss.resources           = 'Bugtags.bundle'
+    ss.preserve_paths      = 'Bugtags.framework/*', 'Bugtags.bundle'
+    ss.frameworks          = 'UIKit', 'ImageIO', 'AVFoundation', 'SystemConfiguration', 'CoreLocation', 'Security', 'CFNetwork', 'Bugtags'
+    ss.xcconfig            = { 'FRAMEWORK_SEARCH_PATHS' => '"$(PODS_ROOT)/Bugtags/"', 'OTHER_LDFLAGS' => '-ObjC' }
+    ss.requires_arc        = true
+  end
+
+  s.subspec 'BugtagsInsta' do |ss|
+    ss.dependency 'Bugtags/Core'
+    ss.dependency 'BugtagsInsta'
+  end
+
+  s.subspec 'Hotfix' do |ss|
+    ss.dependency 'Bugtags/Core'
+    ss.dependency 'JSPatch'
+  end
 end
