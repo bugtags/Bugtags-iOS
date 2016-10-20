@@ -23,7 +23,25 @@ typedef enum BTGInvocationEvent {
     
     // 通过悬浮小球呼出 Bugtags
     BTGInvocationEventBubble
-
+    
 } BTGInvocationEvent;
+
+/**
+ *  Bugtags 数据获取模式，目前只对远程配置及在线修复有效
+ */
+typedef enum BTGDataMode {
+    
+    // 获取生产环境的数据
+    BTGDataModeProduction,
+
+    // 获取测试环境的数据
+    BTGDataModeTesting,
+    
+    // 获取本地的数据文件
+    // 远程配置，自动读取本地 mainBundle 的 main.local.plist 文件
+    // 在线修复，自动读取本地 mainBundle 的 main.local.js 文件
+    BTGDataModeLocal
+    
+} BTGDataMode;
 
 #endif
