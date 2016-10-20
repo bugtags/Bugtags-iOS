@@ -5,12 +5,12 @@
  
  Copyright:  (c) 2016 by Bugtags, Ltd., all rights reserved.
  
- Version:    2.0.0
+ Version:    2.0.1
  */
 
-#import "BTGConstants.h"
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
+#import "BTGConstants.h"
 
 @interface BugtagsOptions : NSObject <NSCopying>
 
@@ -89,10 +89,20 @@
 @property(nonatomic, copy) NSString *build;
 
 /**
- * 设置 SDK 是否处于测试状态，默认为 NO
- * 该属性对远程配置及在线修复有效，设置为 YES，则可以接收远程配置及在线修复测试状态的数据
+ * 设置在线修复的数据获取模式
+ * 默认为 BTGDataModeProduction，获取生产环境的数据
+ * BTGDataModeTesting 获取测试环境的数据
+ * BTGDataModeLocal 获取本地的数据文件，自动读取本地 mainBundle 的 main.local.js 文件
  */
-@property(nonatomic, assign) BOOL inTestMode;
+@property(nonatomic, assign) BTGDataMode hotfixDataMode;
+
+/**
+ * 设置远程配置的数据获取模式
+ * 默认为 BTGDataModeProduction，获取生产环境的数据
+ * BTGDataModeTesting 获取测试环境的数据
+ * BTGDataModeLocal 获取本地的数据文件，自动读取本地 mainBundle 的 main.local.plist 文件
+ */
+@property(nonatomic, assign) BTGDataMode remoteConfigDataMode;
 
 @end
 
