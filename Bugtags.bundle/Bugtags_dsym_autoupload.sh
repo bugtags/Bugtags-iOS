@@ -45,6 +45,7 @@ fi
 
 # Check internet connection
 if [ ! "`ping -c 1 bugtags.com`" ]; then
+echo "Bugtags error: Cannot reach the Bugtags Cloud."
 exit 0
 fi
 
@@ -54,6 +55,8 @@ if [ ! -d "$DSYM_PATH" ]; then
 echo "Bugtags error: dSYM not found: ${DSYM_PATH}, please check Build Settings -> Debug Information Format, must be set to 'DWARF with dSYM File'."
 exit 0
 fi
+
+echo "Bugtags: dSYM file -> ${DSYM_PATH}"
 
 # Create temp directory if not exists
 CURRENT_USER=$(whoami | tr -dc '[:alnum:]\n\r' | tr '[:upper:]' '[:lower:]')
@@ -68,9 +71,11 @@ fi
 
 # Check if UUIDs exists
 DSYM_UUIDs=$(dwarfdump --uuid "${DSYM_PATH}" | cut -d' ' -f2)
+echo "Bugtags: dSYM UUIDs -> ${DSYM_UUIDs}"
 DSYM_UUIDs_PATH="${TEMP_DIRECTORY}/UUIDs.dat"
 if [ -f "${DSYM_UUIDs_PATH}" ]; then
 if grep -Fxq "${DSYM_UUIDs}" "${DSYM_UUIDs_PATH}"; then
+echo "Bugtags error: dSYM archive has already been uploaded."
 exit 0
 fi
 fi
@@ -80,16 +85,18 @@ echo "Bugtags: Compressing dSYM file..."
 DSYM_PATH_ZIP="${TEMP_DIRECTORY}/$DWARF_DSYM_FILE_NAME.zip"
 (/usr/bin/zip --recurse-paths -j -x "*.plist" --quiet "${DSYM_PATH_ZIP}" "${DSYM_PATH}") || exit 0
 
+echo "Bugtags: dSYM archive -> ${DSYM_PATH_ZIP}"
+
 # Upload dSYM
 echo "Bugtags: Uploading dSYM file..."
-ENDPOINT="https://bugtags.com/api/apps/symbols/upload"
+ENDPOINT="https://work.bugtags.com/api/apps/symbols/upload"
 PLISTFILE="${INFOPLIST_FILE}"
 if [[ "$PLISTFILE" != /* ]]; then
 PLISTFILE="${PROJECT_DIR}/${PLISTFILE}"
 fi
 APP_VERSION=$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" "${PLISTFILE}")
 APP_BUILD=$(/usr/libexec/PlistBuddy -c "Print CFBundleVersion" "${PLISTFILE}")
-STATUS=$(curl "${ENDPOINT}" --write-out %{http_code} --silent --output /dev/null -F "file=@${DSYM_PATH_ZIP};type=application/octet-stream" -F "app_key=${APP_KEY}" -F "secret_key=${APP_SECRET}" -F "version_name=${APP_VERSION}" -F "version_code=${APP_BUILD}")
+STATUS=$(curl "${ENDPOINT}" --write-out %{http_code} --silent --output "${TEMP_DIRECTORY}/upload.log" -F "file=@${DSYM_PATH_ZIP};type=application/octet-stream" -F "app_key=${APP_KEY}" -F "secret_key=${APP_SECRET}" -F "version_name=${APP_VERSION}" -F "version_code=${APP_BUILD}")
 if [ $STATUS -ne 200 ]; then
 echo "Bugtags error: dSYM archive not succesfully uploaded."
 echo "Bugtags: deleting temporary dSYM archive..."
