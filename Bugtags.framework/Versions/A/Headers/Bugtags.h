@@ -5,7 +5,7 @@
  
  Copyright:  (c) 2016 by Bugtags, Ltd., all rights reserved.
  
- Version:    2.0.1
+ Version:    2.0.2
  */
 
 #import <UIKit/UIKit.h>
@@ -97,12 +97,32 @@
 @property(nonatomic, assign) BTGDataMode hotfixDataMode;
 
 /**
+ * 设置在线修复在执行过程中的回调
+ */
+@property(nonatomic, copy) BTGHotfixCallback hotfixCallback;
+
+/**
  * 设置远程配置的数据获取模式
  * 默认为 BTGDataModeProduction，获取生产环境的数据
  * BTGDataModeTesting 获取测试环境的数据
  * BTGDataModeLocal 获取本地的数据文件，自动读取本地 mainBundle 的 main.local.plist 文件
  */
 @property(nonatomic, assign) BTGDataMode remoteConfigDataMode;
+
+/**
+ * 设置远程配置在执行过程中的回调
+ */
+@property(nonatomic, copy) BTGRemoteConfigCallback remoteConfigCallback;
+
+/**
+ * 设置其它的启动项
+ * 目前支持的可设置项如下：
+ * BTGUserStepLogCapacityKey 设置收集最近的用户操作步骤数量，默认 500 项
+ * BTGConsoleLogCapacityKey  设置收集最近的控制台日志数量，默认 500 项
+ * BTGBugtagsLogCapacityKey  设置收集最近的 Bugtags 自定义日志数量，默认 500 项
+ * BTGNetworkLogCapacityKey  设置记录最近的网络请求数量，默认 20 项
+ */
+@property(nonatomic, copy) NSDictionary *extraOptions;
 
 @end
 
