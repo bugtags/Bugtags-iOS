@@ -91,5 +91,6 @@ UIKIT_EXTERN NSString *const BTGUserStepLogCapacityKey;
 UIKIT_EXTERN NSString *const BTGConsoleLogCapacityKey;
 UIKIT_EXTERN NSString *const BTGBugtagsLogCapacityKey;
 UIKIT_EXTERN NSString *const BTGNetworkLogCapacityKey;
+UIKIT_EXTERN NSString *const BTGCustomCrashWithScreenshotKey;
 
 #endif
