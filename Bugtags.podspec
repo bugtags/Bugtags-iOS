@@ -42,9 +42,4 @@ Pod::Spec.new do |s|
     ss.dependency 'Bugtags/Core'
     ss.dependency 'JSPatch', '~> 1.1'
   end
-
-  s.subspec 'KSCrash' do |ss|
-    ss.dependency 'KSCrash/RecordingAdvanced', '~> 1.10.1'
-    ss.dependency 'KSCrash/Reporting/Filters/AppleFmt', '~> 1.10.1'
-  end
 end

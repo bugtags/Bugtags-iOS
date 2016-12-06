@@ -69,8 +69,10 @@ if [ ! -d "${TEMP_DIRECTORY}" ]; then
 mkdir "${TEMP_DIRECTORY}"
 fi
 
+DSYM_UUIDs_LIST=$(dwarfdump --uuid "${DSYM_PATH}" | cut -d' ' -f2,3)
+
 # Check if UUIDs exists
-DSYM_UUIDs=$(dwarfdump --uuid "${DSYM_PATH}" | cut -d' ' -f2)
+DSYM_UUIDs=$(echo "${DSYM_UUIDs_LIST}" | cut -d' ' -f1)
 echo "Bugtags: dSYM UUIDs -> ${DSYM_UUIDs}"
 DSYM_UUIDs_PATH="${TEMP_DIRECTORY}/UUIDs.dat"
 if [ -f "${DSYM_UUIDs_PATH}" ]; then
@@ -96,7 +98,7 @@ PLISTFILE="${PROJECT_DIR}/${PLISTFILE}"
 fi
 APP_VERSION=$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" "${PLISTFILE}")
 APP_BUILD=$(/usr/libexec/PlistBuddy -c "Print CFBundleVersion" "${PLISTFILE}")
-STATUS=$(curl "${ENDPOINT}" --write-out %{http_code} --silent --output "${TEMP_DIRECTORY}/upload.log" -F "file=@${DSYM_PATH_ZIP};type=application/octet-stream" -F "app_key=${APP_KEY}" -F "secret_key=${APP_SECRET}" -F "version_name=${APP_VERSION}" -F "version_code=${APP_BUILD}")
+STATUS=$(curl "${ENDPOINT}" --write-out %{http_code} --silent --output "${TEMP_DIRECTORY}/upload.log" -F "file=@${DSYM_PATH_ZIP};type=application/octet-stream" -F "app_key=${APP_KEY}" -F "secret_key=${APP_SECRET}" -F "version_name=${APP_VERSION}" -F "version_code=${APP_BUILD}" -F "uuids=${DSYM_UUIDs_LIST}")
 if [ $STATUS -ne 200 ]; then
 echo "Bugtags error: dSYM archive not succesfully uploaded."
 echo "Bugtags: deleting temporary dSYM archive..."
