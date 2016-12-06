@@ -91,5 +91,7 @@ UIKIT_EXTERN NSString *const BTGUserStepLogCapacityKey;
 UIKIT_EXTERN NSString *const BTGConsoleLogCapacityKey;
 UIKIT_EXTERN NSString *const BTGBugtagsLogCapacityKey;
 UIKIT_EXTERN NSString *const BTGNetworkLogCapacityKey;
+UIKIT_EXTERN NSString *const BTGCustomCrashWithScreenshotKey;      // 手动提交的异常是否截图   默认 NO
+UIKIT_EXTERN NSString *const BTGNetworkActivityIndicatorHiddenKey; // 是否隐藏网络请求状态     默认 NO
 
 #endif

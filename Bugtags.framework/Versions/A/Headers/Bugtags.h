@@ -5,7 +5,7 @@
  
  Copyright:  (c) 2016 by Bugtags, Ltd., all rights reserved.
  
- Version:    2.0.2
+ Version:    2.0.3
  */
 
 #import <UIKit/UIKit.h>
@@ -89,6 +89,11 @@
 @property(nonatomic, copy) NSString *build;
 
 /**
+ * 设置应用的渠道名称
+ */
+@property(nonatomic, copy) NSString *channel;
+
+/**
  * 设置在线修复的数据获取模式
  * 默认为 BTGDataModeProduction，获取生产环境的数据
  * BTGDataModeTesting 获取测试环境的数据
@@ -117,10 +122,10 @@
 /**
  * 设置其它的启动项
  * 目前支持的可设置项如下：
- * BTGUserStepLogCapacityKey 设置收集最近的用户操作步骤数量，默认 500 项
- * BTGConsoleLogCapacityKey  设置收集最近的控制台日志数量，默认 500 项
- * BTGBugtagsLogCapacityKey  设置收集最近的 Bugtags 自定义日志数量，默认 500 项
- * BTGNetworkLogCapacityKey  设置记录最近的网络请求数量，默认 20 项
+ * BTGUserStepLogCapacityKey NSNumber 设置收集最近的用户操作步骤数量，默认 500 项
+ * BTGConsoleLogCapacityKey  NSNumber 设置收集最近的控制台日志数量，默认 500 项
+ * BTGBugtagsLogCapacityKey  NSNumber 设置收集最近的 Bugtags 自定义日志数量，默认 500 项
+ * BTGNetworkLogCapacityKey  NSNumber 设置记录最近的网络请求数量，默认 20 项
  */
 @property(nonatomic, copy) NSDictionary *extraOptions;
 
@@ -276,6 +281,7 @@ void BTGLog(NSString *format, ...) NS_FORMAT_FUNCTION(1,2);
 
 /**
  * 设置问题提交之前的回调
+ * 手动提交问题或自动捕捉到崩溃，在保存相关数据之前会调用该回调
  * @param callback - 回调的 block
  * @return none
  */
@@ -283,6 +289,7 @@ void BTGLog(NSString *format, ...) NS_FORMAT_FUNCTION(1,2);
 
 /**
  * 设置问题提交成功后的回调
+ * 手动提交问题或自动捕捉到崩溃，在相关数据成功提交到 Bugtags 云端后调用该回调
  * @param callback - 回调的 block
  * @return none
  */
