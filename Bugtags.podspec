@@ -29,6 +29,7 @@ Pod::Spec.new do |s|
     ss.resources           = 'Bugtags.bundle'
     ss.preserve_paths      = 'Bugtags.framework/*', 'Bugtags.bundle'
     ss.frameworks          = 'UIKit', 'ImageIO', 'AVFoundation', 'SystemConfiguration', 'CoreLocation', 'Security', 'CFNetwork', 'Bugtags'
+    ss.libraries           = 'c++'
     ss.xcconfig            = { 'FRAMEWORK_SEARCH_PATHS' => '"$(PODS_ROOT)/Bugtags/"', 'OTHER_LDFLAGS' => '-ObjC' }
     ss.requires_arc        = true
   end
