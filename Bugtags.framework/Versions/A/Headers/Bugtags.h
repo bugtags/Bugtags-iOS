@@ -5,7 +5,7 @@
  
  Copyright:  (c) 2016 by Bugtags, Ltd., all rights reserved.
  
- Version:    2.0.3
+ Version:    2.1.0
  */
 
 #import <UIKit/UIKit.h>
@@ -280,6 +280,13 @@ void BTGLog(NSString *format, ...) NS_FORMAT_FUNCTION(1,2);
 + (void)sendFeedback:(NSString *)content;
 
 /**
+ * 添加自定义用户步骤
+ * @param content - 步骤内容
+ * @return none
+ */
++ (void)addUserStep:(NSString *)content;
+
+/**
  * 设置问题提交之前的回调
  * 手动提交问题或自动捕捉到崩溃，在保存相关数据之前会调用该回调
  * @param callback - 回调的 block
@@ -329,7 +336,14 @@ void BTGLog(NSString *format, ...) NS_FORMAT_FUNCTION(1,2);
 /**
  * 手动同步远程配置及在线修复数据
  * Bugtags 初始化会自动调用一次
+ * 如果本地缓存数据已经是最新版本，则不会拉取数据，相当于调用 [Bugtags sync:NO]
  */
 + (void)sync;
+
+/**
+ * 手动同步远程配置及在线修复数据
+ * @param force 清除本地缓存后重新拉取数据
+ */
++ (void)sync:(BOOL)force;
 
 @end
