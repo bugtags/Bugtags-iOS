@@ -5,7 +5,7 @@
  
  Copyright:  (c) 2016 by Bugtags, Ltd., all rights reserved.
  
- Version:    2.1.0
+ Version:    2.1.1
  */
 
 #import <UIKit/UIKit.h>
@@ -278,6 +278,14 @@ void BTGLog(NSString *format, ...) NS_FORMAT_FUNCTION(1,2);
  * @return none
  */
 + (void)sendFeedback:(NSString *)content;
+
+/**
+ * 发送用户反馈
+ * @param content - 反馈内容
+ * @param image   - 附图
+ * @return none
+ */
++ (void)sendFeedback:(NSString *)content image:(UIImage *)image;
 
 /**
  * 添加自定义用户步骤
