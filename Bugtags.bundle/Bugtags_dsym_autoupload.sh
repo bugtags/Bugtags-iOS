@@ -1,4 +1,4 @@
-# Copyright 2015 Bugtags. All rights reserved.
+# Copyright 2017 Bugtags. All rights reserved.
 #
 # Usage:
 #   * In the project editor, select your target.
