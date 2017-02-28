@@ -3,9 +3,9 @@
  
  Contains:   API for using Bugtags's SDK.
  
- Copyright:  (c) 2016 by Bugtags, Ltd., all rights reserved.
+ Copyright:  (c) 2017 by Bugtags, Ltd., all rights reserved.
  
- Version:    2.1.3
+ Version:    2.2.0
  */
 
 #import <UIKit/UIKit.h>
@@ -166,7 +166,6 @@
  * 初始化 Bugtags
  * @param appKey - 通过 bugtags.com 申请的应用appKey
  * @param invocationEvent - 呼出方式
- * @return none
  */
 + (void)startWithAppKey:(NSString *)appKey invocationEvent:(BTGInvocationEvent)invocationEvent;
 
@@ -175,14 +174,12 @@
  * @param appKey - 通过 bugtags.com 申请的应用appKey
  * @param invocationEvent - 呼出方式
  * @param options - 启动选项
- * @return none
  */
 + (void)startWithAppKey:(NSString *)appKey invocationEvent:(BTGInvocationEvent)invocationEvent options:(BugtagsOptions *)options;
 
 /**
  * 设置 Bugtags 呼出方式
  * @param invocationEvent - 呼出方式
- * @return none
  */
 + (void)setInvocationEvent:(BTGInvocationEvent)invocationEvent;
 
@@ -194,9 +191,8 @@
 
 /**
  * Bugtags 日志工具，添加自定义日志，不会在控制台输出
- * @param format
- * @param ...
- * @return none
+ * @param format - 格式化字符串
+ * @param ... - 字符串
  */
 void BTGLog(NSString *format, ...) NS_FORMAT_FUNCTION(1,2);
 
@@ -204,35 +200,30 @@ void BTGLog(NSString *format, ...) NS_FORMAT_FUNCTION(1,2);
  * Bugtags 日志工具，添加自定义日志，不会在控制台输出，功能等同于 BTGLog
  * 在 Swift 中请调用此方法添加自定义日志
  * @param content - 日志内容
- * @return none
  */
 + (void)log:(NSString *)content;
 
 /**
  * 设置是否收集 Crash 信息
  * @param trackingCrashes - 默认 YES
- * @return none
  */
 + (void)setTrackingCrashes:(BOOL)trackingCrashes;
 
 /**
  * 设置是否跟踪用户操作步骤
  * @param trackingUserSteps - 默认 YES
- * @return none
  */
 + (void)setTrackingUserSteps:(BOOL)trackingUserSteps;
 
 /**
  * 设置是否收集控制台日志
  * @param trackingConsoleLog - 默认 YES
- * @return none
  */
 + (void)setTrackingConsoleLog:(BOOL)trackingConsoleLog;
 
 /**
 * 设置是否收集用户位置信息
-* @param trackingUserLocation
-* @return none
+* @param trackingUserLocation - 默认 YES
 */
 + (void)setTrackingUserLocation:(BOOL)trackingUserLocation;
 
@@ -240,42 +231,36 @@ void BTGLog(NSString *format, ...) NS_FORMAT_FUNCTION(1,2);
  * 设置是否跟踪网络请求，只跟踪 HTTP / HTTPS 请求
  * 强烈建议同时设置 trackingNetworkURLFilter 对需要跟踪的网络请求进行过滤
  * @param trackingNetwork - 默认 NO
- * @return none
  */
 + (void)setTrackingNetwork:(BOOL)trackingNetwork;
 
 /**
  * 设置自定义数据，会与问题一起提交
- * @param data
- * @param key
- * @return none
+ * @param data - 用户数据
+ * @param key - key
  */
 + (void)setUserData:(NSString *)data forKey:(NSString *)key;
 
 /**
  * 移除指定 key 的自定义数据
- * @param key
- * @return none
+ * @param key - key
  */
 + (void)removeUserDataForKey:(NSString *)key;
 
 /**
  * 移除所有自定义数据
- * @return none
  */
 + (void)removeAllUserData;
 
 /**
  * 手动发送Exception
- * @param exception
- * @return none
+ * @param exception - 要提交的 exception 对象
  */
 + (void)sendException:(NSException *)exception;
 
 /**
  * 发送用户反馈
  * @param content - 反馈内容
- * @return none
  */
 + (void)sendFeedback:(NSString *)content;
 
@@ -283,14 +268,12 @@ void BTGLog(NSString *format, ...) NS_FORMAT_FUNCTION(1,2);
  * 发送用户反馈
  * @param content - 反馈内容
  * @param image   - 附图
- * @return none
  */
 + (void)sendFeedback:(NSString *)content image:(UIImage *)image;
 
 /**
  * 添加自定义用户步骤
  * @param content - 步骤内容
- * @return none
  */
 + (void)addUserStep:(NSString *)content;
 
@@ -298,7 +281,6 @@ void BTGLog(NSString *format, ...) NS_FORMAT_FUNCTION(1,2);
  * 设置问题提交之前的回调
  * 手动提交问题或自动捕捉到崩溃，在保存相关数据之前会调用该回调
  * @param callback - 回调的 block
- * @return none
  */
 + (void)setBeforeSendingCallback:(void (^)(void))callback;
 
@@ -306,7 +288,6 @@ void BTGLog(NSString *format, ...) NS_FORMAT_FUNCTION(1,2);
  * 设置问题提交成功后的回调
  * 手动提交问题或自动捕捉到崩溃，在相关数据成功提交到 Bugtags 云端后调用该回调
  * @param callback - 回调的 block
- * @return none
  */
 + (void)setAfterSendingCallback:(void (^)(void))callback;
 
@@ -318,7 +299,6 @@ void BTGLog(NSString *format, ...) NS_FORMAT_FUNCTION(1,2);
 
 /**
  * 手动调用截屏界面
- * @return none
  */
 + (void)invoke;
 
