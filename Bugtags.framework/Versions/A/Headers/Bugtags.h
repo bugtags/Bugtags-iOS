@@ -5,7 +5,7 @@
  
  Copyright:  (c) 2017 by Bugtags, Ltd., all rights reserved.
  
- Version:    2.2.0
+ Version:    2.2.1
  */
 
 #import <UIKit/UIKit.h>
@@ -92,19 +92,6 @@
  * 设置应用的渠道名称
  */
 @property(nonatomic, copy) NSString *channel;
-
-/**
- * 设置在线修复的数据获取模式
- * 默认为 BTGDataModeProduction，获取生产环境的数据
- * BTGDataModeTesting 获取测试环境的数据
- * BTGDataModeLocal 获取本地的数据文件，自动读取本地 mainBundle 的 main.local.js 文件
- */
-@property(nonatomic, assign) BTGDataMode hotfixDataMode;
-
-/**
- * 设置在线修复在执行过程中的回调
- */
-@property(nonatomic, copy) BTGHotfixCallback hotfixCallback;
 
 /**
  * 设置远程配置的数据获取模式
@@ -322,14 +309,14 @@ void BTGLog(NSString *format, ...) NS_FORMAT_FUNCTION(1,2);
 + (BugtagsRemoteConfig *)remoteConfig;
 
 /**
- * 手动同步远程配置及在线修复数据
+ * 手动同步远程配置
  * Bugtags 初始化会自动调用一次
  * 如果本地缓存数据已经是最新版本，则不会拉取数据，相当于调用 [Bugtags sync:NO]
  */
 + (void)sync;
 
 /**
- * 手动同步远程配置及在线修复数据
+ * 手动同步远程配置
  * @param force 清除本地缓存后重新拉取数据
  */
 + (void)sync:(BOOL)force;
