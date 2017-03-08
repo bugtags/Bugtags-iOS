@@ -30,7 +30,7 @@ typedef enum BTGInvocationEvent {
 } BTGInvocationEvent;
 
 /**
- *  Bugtags 数据获取模式，目前只对远程配置及在线修复有效
+ *  Bugtags 数据获取模式，目前只对远程配置有效
  */
 typedef enum BTGDataMode {
     
@@ -42,7 +42,6 @@ typedef enum BTGDataMode {
     
     // 获取本地的数据文件
     // 远程配置，自动读取本地 mainBundle 的 main.local.plist 文件
-    // 在线修复，自动读取本地 mainBundle 的 main.local.js 文件
     BTGDataModeLocal
     
 } BTGDataMode;
@@ -62,30 +61,7 @@ typedef enum BTGRemoteConfigState {
 
 } BTGRemoteConfigState;
 
-/**
- *  在线修复状态
- */
-typedef enum BTGHotfixState {
-    
-    BTGHotfixStateNone,
-    
-    // 已执行本地缓存的脚本
-    BTGHotfixStateExecutedFromCache,
-    
-    // 已执行从 Bugtags 云端获取的脚本
-    BTGHotfixStateExecutedFromRemote,
-    
-    // 脚本有更新
-    BTGHotfixStateUpdate,
-    
-    // 脚本更新完成
-    BTGHotfixStateUpdateDone,
-    
-} BTGHotfixState;
-
 typedef void (^BTGRemoteConfigCallback)(BTGRemoteConfigState state, NSDictionary *data);
-
-typedef void (^BTGHotfixCallback)(BTGHotfixState state, NSDictionary *data, NSError *error);
 
 UIKIT_EXTERN NSString *const BTGUserStepLogCapacityKey;
 UIKIT_EXTERN NSString *const BTGConsoleLogCapacityKey;
