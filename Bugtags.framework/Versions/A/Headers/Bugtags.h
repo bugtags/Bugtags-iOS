@@ -5,7 +5,7 @@
  
  Copyright:  (c) 2017 by Bugtags, Ltd., all rights reserved.
  
- Version:    2.2.2
+ Version:    2.2.3
  */
 
 #import <UIKit/UIKit.h>
