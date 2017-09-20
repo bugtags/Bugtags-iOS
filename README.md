@@ -15,7 +15,7 @@ __[Video tour](http://blog.bugtags.com/2015/12/23/bugtags-intro-video/)__
 
 ## Requirements
 
-Bugtags requires iOS 6.0 and above.
+Bugtags requires iOS 7.0 and above.
 
 ## Installation
 
