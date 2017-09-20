@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "Bugtags"
-  s.version      = "2.3.2"
+  s.version      = "2.4.0"
   s.summary      = "Bug reporting for mobile apps, improve your app anytime, anywhere. Learn more at http://bugtags.com."
   s.homepage     = "http://bugtags.com/"
   s.license      = {
@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
       LICENSE
     }
   s.author              = { "Bugtags" => "dev@bugtags.com" }
-  s.platform            = :ios, '6.0'
+  s.platform            = :ios, '7.0'
   s.source              = { :git => "https://github.com/bugtags/Bugtags-iOS.git", :tag => s.version.to_s }
   s.default_subspec     = 'Core'
 
