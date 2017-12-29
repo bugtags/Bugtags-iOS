@@ -3,9 +3,9 @@
  
  Contains:   API for using Bugtags's SDK.
  
- Copyright:  (c) 2017 by Bugtags, Ltd., all rights reserved.
+ Copyright:  (c) 2018 by Bugtags, Ltd., all rights reserved.
  
- Version:    2.4.3
+ Version:    3.0.0
  */
 
 #import <UIKit/UIKit.h>

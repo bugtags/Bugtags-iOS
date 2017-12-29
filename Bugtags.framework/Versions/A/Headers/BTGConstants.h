@@ -3,7 +3,7 @@
 //  Bugtags
 //
 //  Created by Stephen Zhang on 15/6/4.
-//  Copyright (c) 2017 bugtags.com. All rights reserved.
+//  Copyright (c) 2018 bugtags.com. All rights reserved.
 //
 
 #ifndef Bugtags_BTGConstants_h
@@ -69,5 +69,6 @@ UIKIT_EXTERN NSString *const BTGBugtagsLogCapacityKey;
 UIKIT_EXTERN NSString *const BTGNetworkLogCapacityKey;
 UIKIT_EXTERN NSString *const BTGCustomCrashWithScreenshotKey;      // 手动提交的异常是否截图   默认 NO
 UIKIT_EXTERN NSString *const BTGNetworkActivityIndicatorHiddenKey; // 是否隐藏网络请求状态     默认 NO
+UIKIT_EXTERN NSString *const BTGCrashLogAllThreadsKey;
 
 #endif
