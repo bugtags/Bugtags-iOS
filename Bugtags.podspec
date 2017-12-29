@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.license      = {
       :type => 'Commercial',
       :text => <<-LICENSE
-                Copyright (C) 2017 Bugtags.
+                Copyright (C) 2018 Bugtags.
                 Permission is hereby granted to use this framework as is, modification are not allowed.
                 All rights reserved.
         
