@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "Bugtags"
-  s.version      = "3.0.0"
+  s.version      = "3.0.1"
   s.summary      = "Bug reporting for mobile apps, improve your app anytime, anywhere. Learn more at http://bugtags.com."
   s.homepage     = "http://bugtags.com/"
   s.license      = {
@@ -32,10 +32,5 @@ Pod::Spec.new do |s|
     ss.libraries           = 'c++'
     ss.xcconfig            = { 'FRAMEWORK_SEARCH_PATHS' => '"$(PODS_ROOT)/Bugtags/"', 'OTHER_LDFLAGS' => '-ObjC' }
     ss.requires_arc        = true
-  end
-
-  s.subspec 'BugtagsInsta' do |ss|
-    ss.dependency 'Bugtags/Core'
-    ss.dependency 'BugtagsInsta'
   end
 end
