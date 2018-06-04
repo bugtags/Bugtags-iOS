@@ -2,7 +2,7 @@ Pod::Spec.new do |s|
   s.name         = "Bugtags"
   s.version      = "3.0.2"
   s.summary      = "Bug reporting for mobile apps, improve your app anytime, anywhere. Learn more at http://bugtags.com."
-  s.homepage     = "http://bugtags.com/"
+  s.homepage     = "http://www.bugtags.com/"
   s.license      = {
       :type => 'Commercial',
       :text => <<-LICENSE
