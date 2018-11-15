@@ -5,7 +5,7 @@
  
  Copyright:  (c) 2018 by Bugtags, Ltd., all rights reserved.
  
- Version:    3.0.2
+ Version:    3.0.3
  */
 
 #import <UIKit/UIKit.h>
@@ -53,7 +53,7 @@
 @property(nonatomic, assign) BOOL trackingNetworkContinueWithInvalidCertificate;
 
 /**
- * 是否收集闪退时的界面截图，默认 YES
+ * 是否收集闪退时的界面截图，默认 NO
  */
 @property(nonatomic, assign) BOOL crashWithScreenshot;
 
