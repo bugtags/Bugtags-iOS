@@ -44,7 +44,7 @@ fi
 fi
 
 # Check internet connection
-if [ ! "`ping -c 1 bugtags.com`" ]; then
+if [ ! "`ping -c 1 bugtags.cn`" ]; then
 echo "Bugtags error: Cannot reach the Bugtags Cloud."
 exit 0
 fi
@@ -91,7 +91,7 @@ echo "Bugtags: dSYM archive -> ${DSYM_PATH_ZIP}"
 
 # Upload dSYM
 echo "Bugtags: Uploading dSYM file..."
-ENDPOINT="https://work.bugtags.com/api/apps/symbols/upload"
+ENDPOINT="https://work.bugtags.cn/api/apps/symbols/upload"
 PLISTFILE="${INFOPLIST_FILE}"
 if [[ "$PLISTFILE" != /* ]]; then
 PLISTFILE="${PROJECT_DIR}/${PLISTFILE}"
