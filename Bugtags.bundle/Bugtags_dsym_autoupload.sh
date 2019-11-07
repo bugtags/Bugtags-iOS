@@ -96,8 +96,16 @@ PLISTFILE="${INFOPLIST_FILE}"
 if [[ "$PLISTFILE" != /* ]]; then
 PLISTFILE="${PROJECT_DIR}/${PLISTFILE}"
 fi
+if [[ -n $MARKETING_VERSION ]]; then
+APP_VERSION="$MARKETING_VERSION"
+else
 APP_VERSION=$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" "${PLISTFILE}")
+fi
+if [[ -n $CURRENT_PROJECT_VERSION ]]; then
+APP_BUILD="$CURRENT_PROJECT_VERSION"
+else
 APP_BUILD=$(/usr/libexec/PlistBuddy -c "Print CFBundleVersion" "${PLISTFILE}")
+fi
 STATUS=$(curl "${ENDPOINT}" --write-out %{http_code} --silent --output "${TEMP_DIRECTORY}/upload.log" -F "file=@${DSYM_PATH_ZIP};type=application/octet-stream" -F "app_key=${APP_KEY}" -F "secret_key=${APP_SECRET}" -F "version_name=${APP_VERSION}" -F "version_code=${APP_BUILD}" -F "uuids=${DSYM_UUIDs_LIST}")
 if [ $STATUS -ne 200 ]; then
 echo "Bugtags error: dSYM archive not succesfully uploaded."
