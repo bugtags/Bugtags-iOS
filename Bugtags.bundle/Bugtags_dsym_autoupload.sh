@@ -23,14 +23,14 @@
 echo "Bugtags: Started uploading dSYM"
 
 if [ ! "${APP_KEY}" ] || [ ! "${APP_SECRET}" ]; then
-echo "Bugtags error: APP_KEY or APP_SECRET is invalid"
+echo "Bugtags error: APP_KEY or APP_SECRET is invalid."
 exit 0
 fi
 
 # Check for debug builds
 if [ "$CONFIGURATION" == "Debug" ] || echo $GCC_PREPROCESSOR_DEFINITIONS | grep -iq DEBUG=1; then
 if [ "${SKIP_DEBUG_BUILDS}" ] && [ "${SKIP_DEBUG_BUILDS}" -eq 1 ]; then
-echo "Bugtags: Skipping debug build"
+echo "Bugtags: Skipping debug build."
 exit 0
 fi
 fi
@@ -38,7 +38,7 @@ fi
 # Check for simulator builds
 if [ "$EFFECTIVE_PLATFORM_NAME" == "-iphonesimulator" ]; then
 if [ "${SKIP_SIMULATOR_BUILDS}" ] && [ "${SKIP_SIMULATOR_BUILDS}" -eq 1 ]; then
-echo "Bugtags: Skipping simulator build"
+echo "Bugtags: Skipping simulator build."
 exit 0
 fi
 fi
@@ -106,6 +106,10 @@ APP_BUILD="$CURRENT_PROJECT_VERSION"
 else
 APP_BUILD=$(/usr/libexec/PlistBuddy -c "Print CFBundleVersion" "${PLISTFILE}")
 fi
+if [ ! "${APP_VERSION}" ] || [ ! "${APP_BUILD}" ]; then
+    echo "Bugtags error: APP_VERSION or APP_BUILD is invalid."
+    exit 0
+fi
 STATUS=$(curl "${ENDPOINT}" --write-out %{http_code} --silent --output "${TEMP_DIRECTORY}/upload.log" -F "file=@${DSYM_PATH_ZIP};type=application/octet-stream" -F "app_key=${APP_KEY}" -F "secret_key=${APP_SECRET}" -F "version_name=${APP_VERSION}" -F "version_code=${APP_BUILD}" -F "uuids=${DSYM_UUIDs_LIST}")
 if [ $STATUS -ne 200 ]; then
 echo "Bugtags error: dSYM archive not succesfully uploaded."
@@ -124,6 +128,6 @@ echo "${DSYM_UUIDs}" >> "${DSYM_UUIDs_PATH}"
 # Finalize
 echo "Bugtags: dSYM upload complete."
 if [ "$?" -ne 0 ]; then
-echo "Bugtags error: an error was encountered uploading dSYM"
+echo "Bugtags error: an error was encountered uploading dSYM."
 exit 0
 fi
