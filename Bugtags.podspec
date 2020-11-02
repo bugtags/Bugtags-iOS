@@ -1,12 +1,12 @@
 Pod::Spec.new do |s|
   s.name         = "Bugtags"
-  s.version      = "3.2.2"
+  s.version      = "3.2.3"
   s.summary      = "Bug reporting for mobile apps, improve your app anytime, anywhere. Learn more at https://bugtags.cn."
   s.homepage     = "https://bugtags.cn/"
   s.license      = {
       :type => 'Commercial',
       :text => <<-LICENSE
-                Copyright (C) 2019 Bugtags.
+                Copyright (C) 2020 Bugtags.
                 Permission is hereby granted to use this framework as is, modification are not allowed.
                 All rights reserved.
         
