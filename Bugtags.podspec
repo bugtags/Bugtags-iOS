@@ -1,12 +1,12 @@
 Pod::Spec.new do |s|
   s.name         = "Bugtags"
-  s.version      = "3.2.3"
+  s.version      = "3.3.0"
   s.summary      = "Bug reporting for mobile apps, improve your app anytime, anywhere. Learn more at https://bugtags.cn."
   s.homepage     = "https://bugtags.cn/"
   s.license      = {
       :type => 'Commercial',
       :text => <<-LICENSE
-                Copyright (C) 2020 Bugtags.
+                Copyright (C) 2021 Bugtags.
                 Permission is hereby granted to use this framework as is, modification are not allowed.
                 All rights reserved.
         
@@ -32,5 +32,8 @@ Pod::Spec.new do |s|
     ss.libraries           = 'c++'
     ss.xcconfig            = { 'FRAMEWORK_SEARCH_PATHS' => '"$(PODS_ROOT)/Bugtags/"', 'OTHER_LDFLAGS' => '-ObjC' }
     ss.requires_arc        = true
+
+    ss.pod_target_xcconfig  = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
+    ss.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
   end
 end
